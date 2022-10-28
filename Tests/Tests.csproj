@@ -10,4 +10,9 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Minesweeper.Console\Minesweeper.Console.csproj" />
+    <ProjectReference Include="..\Minesweeper.Core\Minesweeper.Core.csproj" />
+  </ItemGroup>
+
 </Project>

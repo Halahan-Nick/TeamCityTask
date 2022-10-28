@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Minesweeper.Core.Enums;
 using Minesweeper.Core.Models;
-
+using System;
 
 namespace Tests
 {
@@ -9,9 +9,10 @@ namespace Tests
     internal class GameProcessorTest
     {
         [Test]
-        public void CheckOpen_OpenSingleCell_CellIsOpened(int x, int y)
+        public void CheckOpen_OpenSingleCell_CellIsOpened()
         {
-            
+
+
         }
 
     }
