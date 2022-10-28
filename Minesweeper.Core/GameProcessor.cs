@@ -29,6 +29,7 @@ namespace Minesweeper.Core
             totalCount = boolField.GetLength(0) * boolField.GetLength(1);
         }
 
+        //Tests for this method is Home Task
         public GameState Open(int x, int y)
         {
             if (GameState != GameState.Active)
@@ -82,6 +83,7 @@ namespace Minesweeper.Core
             return GameState;
         }
 
+        //Tests for this method is Home Task
         public PointState[,] GetCurrentField()
         {
             var publicFieldInfo = new PointState[_field.GetLength(0), _field.GetLength(1)];
