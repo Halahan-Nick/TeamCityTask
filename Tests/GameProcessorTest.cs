@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+using Minesweeper.Core.Enums;
+using Minesweeper.Core.Models;
+
 
 namespace Tests
 {
+    [TestFixture]
     internal class GameProcessorTest
     {
+        [Test]
+        public void CheckOpen_OpenSingleCell_CellIsOpened(int x, int y)
+        {
+            
+        }
+
     }
 }
