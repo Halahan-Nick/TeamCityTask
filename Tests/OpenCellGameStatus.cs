@@ -69,10 +69,11 @@ namespace Tests
         {
             var xCoordinate = 0;
             var yCoordinate = 0;
-            var gameState = GameState.Win;
-
-            //var fieldState = _processor.Open(xCoordinate, yCoordinate);
-            //Assert.Throws<InvalidOperationException>(()=> GameState.Open($"Game status is {GameState.Lose}"));
+            var gameState = _processor.Open(xCoordinate, yCoordinate);
+            gameState = _processor.Open(xCoordinate + 1, yCoordinate);
+            gameState = _processor.Open(xCoordinate, yCoordinate + 1);
+            gameState = _processor.Open(xCoordinate, yCoordinate);
+            Assert.Throws<InvalidOperationException>(()=> _processor.Open(xCoordinate, yCoordinate));
 
         }
 
@@ -146,8 +147,8 @@ namespace Tests
         [Test]
         public void CheckPiontStateStatus_OpenCellFourNeighbours_CellPointStateFourNeighbours()
         {
-            var xCoordinate = 1;
-            var yCoordinate = 4;
+            var xCoordinate = 4;
+            var yCoordinate = 2;
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
             fullFieldState = _processor.GetCurrentField();
@@ -172,7 +173,7 @@ namespace Tests
         [Test]
         public void CheckPiontStateStatus_OpenCellWithMine_CellPointStateMine()
         {
-            var xCoordinate = 1;
+            var xCoordinate = 5;
             var yCoordinate = 1;
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
