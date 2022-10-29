@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Minesweeper.Core.Enums;
-using Minesweeper.Core.Models;
 using System;
 using Minesweeper.Core;
 
@@ -83,8 +82,6 @@ namespace Tests
     internal class GetCurrentFieldStatus
     {
         private GameProcessor _processor;
-
-        private PointState[,] fullFieldState;
 
         public GetCurrentFieldStatus()
         {
