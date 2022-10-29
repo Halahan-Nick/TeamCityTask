@@ -103,12 +103,11 @@ namespace Tests
             testField[3, 2] = true;
             testField[3, 3] = true;
             _processor = new GameProcessor(testField);
-            //_fieldstate = new PointState();
-            
+                       
         }
 
         [Test]
-        public void CheckPiontStateStatus_OpenCellWithMaxMines_pFieldPointStateClose()
+        public void CheckPiontStateStatus_CheckStatusOfClosedCell_FieldPointStateClose()
         {
             var xCoordinate = 0;
             var yCoordinate = 0;
@@ -124,7 +123,8 @@ namespace Tests
             var xCoordinate = 5;
             var yCoordinate = 5;
             var fullFieldState = _processor.GetCurrentField();
-            var fieldState = _processor.Open(xCoordinate, yCoordinate);
+            _processor.Open(xCoordinate, yCoordinate);
+            fullFieldState = _processor.GetCurrentField();
 
             Assert.AreEqual(PointState.Neighbors0, fullFieldState[xCoordinate, yCoordinate]);
 
@@ -133,35 +133,39 @@ namespace Tests
         [Test]
         public void CheckPiontStateStatus_OpenCellOneNeighbour_CellPointStateOneNeighbour()
         {
-            var xCoordinate = 0;
-            var yCoordinate = 5;
+            var xCoordinate = 5;
+            var yCoordinate = 0;
             var fullFieldState = _processor.GetCurrentField();
-            var fieldState = _processor.Open(xCoordinate, yCoordinate);
+            _processor.Open(xCoordinate, yCoordinate);
+            fullFieldState = _processor.GetCurrentField();
 
-            Assert.AreEqual(PointState.Neighbors1, fullFieldState[xCoordinate, yCoordinate]);
+            Assert.AreEqual(PointState.Neighbors1, fullFieldState[yCoordinate, xCoordinate]);
 
         }
 
         [Test]
         public void CheckPiontStateStatus_OpenCellFourNeighbours_CellPointStateFourNeighbours()
         {
-            var xCoordinate = 2;
+            var xCoordinate = 1;
             var yCoordinate = 4;
             var fullFieldState = _processor.GetCurrentField();
-            var fieldState = _processor.Open(xCoordinate, yCoordinate);
+            _processor.Open(xCoordinate, yCoordinate);
+            fullFieldState = _processor.GetCurrentField();
 
-            Assert.AreEqual(PointState.Neighbors4, fullFieldState[xCoordinate, yCoordinate]);
+            Assert.AreEqual(PointState.Neighbors4, fullFieldState[yCoordinate, xCoordinate]);
 
         }
 
         [Test]
-        public void CheckPiontStateStatus_OpenCellFiveNeighbours_CellPointStateFiveNeighbours()
+        public void CheckPiontStateStatus_OpenCellMaxNeighbours_CellPointStateEightNeighbours()
         {
-            var xCoordinate = 0;
-            var yCoordinate = 5;
+            var xCoordinate = 2;
+            var yCoordinate = 2;
             var fullFieldState = _processor.GetCurrentField();
+            _processor.Open(xCoordinate, yCoordinate);
+            fullFieldState = _processor.GetCurrentField();
 
-            Assert.AreEqual(PointState.Close, fullFieldState[xCoordinate, yCoordinate]);
+            Assert.AreEqual(PointState.Neighbors8, fullFieldState[yCoordinate, xCoordinate]);
 
         }
 
@@ -171,9 +175,10 @@ namespace Tests
             var xCoordinate = 1;
             var yCoordinate = 1;
             var fullFieldState = _processor.GetCurrentField();
-            var fieldState = _processor.Open(xCoordinate, yCoordinate);
+            _processor.Open(xCoordinate, yCoordinate);
+            fullFieldState = _processor.GetCurrentField();
 
-            Assert.AreEqual(PointState.Mine, fullFieldState[xCoordinate, yCoordinate]);
+            Assert.AreEqual(PointState.Mine, fullFieldState[yCoordinate, xCoordinate]);
 
         }
 
