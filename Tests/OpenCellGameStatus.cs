@@ -63,7 +63,7 @@ namespace Tests
         }
 
         [Test]
-        [Ignore("Need to find out how to work with thrown from method exception")]
+        //[Ignore("Need to find out how to work with thrown from method exception")]
         public void CheckWinGameStatus_TryToOpenCell_InvalidOperationException()
         {
             var xCoordinate = 0;
@@ -71,7 +71,8 @@ namespace Tests
             var gameState = _processor.Open(xCoordinate, yCoordinate);
             gameState = _processor.Open(xCoordinate + 1, yCoordinate);
             gameState = _processor.Open(xCoordinate, yCoordinate + 1);
-            gameState = _processor.Open(xCoordinate, yCoordinate);
+           // gameState = _processor.Open(xCoordinate, yCoordinate);
+
             Assert.Throws<InvalidOperationException>(()=> _processor.Open(xCoordinate, yCoordinate));
 
         }
