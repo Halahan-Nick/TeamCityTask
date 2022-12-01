@@ -23,37 +23,27 @@ namespace Tests
         }
 
 
-        [Test]
-        public void CheckLooseGameStatus_OpenCellWithMine_GameStatusIsLoose()
+        [TestCase (1, 1)]
+        public void CheckLooseGameStatus_OpenCellWithMine_GameStatusIsLoose(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 1;
-            var yCoordinate = 1;
             var gameState = _processor.Open(xCoordinate, yCoordinate);
 
             Assert.AreEqual(GameState.Lose, gameState, $"Expected GameState is {GameState.Lose}");
-
-            //if (gameState != GameState.Lose)
-            //{
-            //    throw new("Game status is Incorrect");
-            //}
         }
 
-        [Test]
-        public void CheckActiveGameStatus_OpenCellWithNoMine_GameStatusIsActive()
+        [TestCase(0, 1)]
+        public void CheckActiveGameStatus_OpenCellWithNoMine_GameStatusIsActive(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 0;
-            var yCoordinate = 1;
             var gameState = _processor.Open(xCoordinate, yCoordinate);
 
             Assert.AreEqual(GameState.Active, gameState, $"Expected GameState is {GameState.Active}");
         }
 
 
-        [Test]
-        public void CheckWinGameStatus_OpenAllCellsAllMines_GameStatusWin()
+        [TestCase(0, 0)]
+        public void CheckWinGameStatus_OpenAllCellsAllMines_GameStatusWin(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 0;
-            var yCoordinate = 0;
+
             var gameState = _processor.Open(xCoordinate, yCoordinate);
             gameState = _processor.Open(xCoordinate + 1, yCoordinate);
             gameState = _processor.Open(xCoordinate, yCoordinate + 1);
@@ -62,12 +52,10 @@ namespace Tests
 
         }
 
-        [Test]
+        [TestCase(0, 0)]
         //[Ignore("Need to find out how to work with thrown from method exception")]
-        public void CheckWinGameStatus_TryToOpenCell_InvalidOperationException()
+        public void CheckWinGameStatus_TryToOpenCell_InvalidOperationException(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 0;
-            var yCoordinate = 0;
             var gameState = _processor.Open(xCoordinate, yCoordinate);
             gameState = _processor.Open(xCoordinate + 1, yCoordinate);
             gameState = _processor.Open(xCoordinate, yCoordinate + 1);
