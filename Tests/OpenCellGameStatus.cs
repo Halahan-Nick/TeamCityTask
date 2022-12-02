@@ -93,22 +93,19 @@ namespace Tests
                        
         }
 
-        [Test]
-        public void CheckPiontStateStatus_CheckStatusOfClosedCell_FieldPointStateClose()
+        [TestCase(0, 0)]
+        public void CheckPiontStateStatus_CheckStatusOfClosedCell_FieldPointStateClose(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 0;
-            var yCoordinate = 0;
             var fullFieldState = _processor.GetCurrentField();
 
             Assert.AreEqual(PointState.Close, fullFieldState[xCoordinate, yCoordinate]);
 
         }
 
-        [Test]
-        public void CheckPiontStateStatus_OpenCellNoNeighbours_CellPointStateNoNeighbours()
+        [TestCase(5, 5)]
+        public void CheckPiontStateStatus_OpenCellNoNeighbours_CellPointStateNoNeighbours(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 5;
-            var yCoordinate = 5;
+
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
             fullFieldState = _processor.GetCurrentField();
@@ -117,11 +114,9 @@ namespace Tests
 
         }
 
-        [Test]
-        public void CheckPiontStateStatus_OpenCellOneNeighbour_CellPointStateOneNeighbour()
+        [TestCase(5, 0)]
+        public void CheckPiontStateStatus_OpenCellOneNeighbour_CellPointStateOneNeighbour(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 5;
-            var yCoordinate = 0;
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
             fullFieldState = _processor.GetCurrentField();
@@ -130,11 +125,10 @@ namespace Tests
 
         }
 
-        [Test]
-        public void CheckPiontStateStatus_OpenCellFourNeighbours_CellPointStateFourNeighbours()
+        [TestCase(4, 2)]
+        public void CheckPiontStateStatus_OpenCellFourNeighbours_CellPointStateFourNeighbours(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 4;
-            var yCoordinate = 2;
+
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
             fullFieldState = _processor.GetCurrentField();
@@ -143,11 +137,9 @@ namespace Tests
 
         }
 
-        [Test]
-        public void CheckPiontStateStatus_OpenCellMaxNeighbours_CellPointStateEightNeighbours()
+        [TestCase(2, 2)]
+        public void CheckPiontStateStatus_OpenCellMaxNeighbours_CellPointStateEightNeighbours(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 2;
-            var yCoordinate = 2;
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
             fullFieldState = _processor.GetCurrentField();
@@ -156,11 +148,9 @@ namespace Tests
 
         }
 
-        [Test]
-        public void CheckPiontStateStatus_OpenCellWithMine_CellPointStateMine()
+        [TestCase(5, 1)]
+        public void CheckPiontStateStatus_OpenCellWithMine_CellPointStateMine(int xCoordinate, int yCoordinate)
         {
-            var xCoordinate = 5;
-            var yCoordinate = 1;
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
             fullFieldState = _processor.GetCurrentField();
@@ -170,4 +160,30 @@ namespace Tests
         }
 
     }
-}
+
+    [TestFixture]
+    internal class RectangleField
+    {
+        private GameProcessor _processor;
+
+        public GetCurrentFieldStatus()
+        {
+        }
+
+        [SetUp]
+        public void SetupForGameStatus()
+        {
+            var testField = new bool[6, 6];
+            testField[1, 1] = true;
+            testField[1, 2] = true;
+            testField[1, 3] = true;
+            testField[1, 5] = true;
+            testField[2, 1] = true;
+            testField[2, 3] = true;
+            testField[3, 1] = true;
+            testField[3, 2] = true;
+            testField[3, 3] = true;
+            _processor = new GameProcessor(testField);
+
+        }
+    }
