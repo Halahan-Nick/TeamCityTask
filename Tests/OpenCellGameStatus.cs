@@ -79,7 +79,7 @@ namespace Tests
         [SetUp]
         public void SetupForGameStatus()
         {
-            var testField = new bool[3, 10];
+            var testField = new bool[6, 6];
             testField[1, 1] = true;
             testField[1, 2] = true;
             testField[1, 3] = true;
@@ -162,11 +162,11 @@ namespace Tests
     }
 
     [TestFixture]
-    internal class RectangleField
+    internal class GetRectangleFieldStatus
     {
         private GameProcessor _processor;
 
-        public GetCurrentFieldStatus()
+        public GetRectangleFieldStatus()
         {
         }
 
@@ -175,25 +175,27 @@ namespace Tests
         {
             var testField = new bool[3, 10];
             testField[0, 0] = true;
-            testField[1, 0] = true;
-            testField[2, 0] = true;
-            testField[1, 1] = true;
+            testField[0, 1] = true;
             testField[0, 2] = true;
-            testField[1, 2] = true;
+            testField[1, 1] = true;
+            testField[2, 0] = true;
+            testField[2, 1] = true;
             testField[2, 2] = true;
 
             _processor = new GameProcessor(testField);
+        }
 
-            [TestCase(0, 1)]
-            public void CheckPiontStateStatus_OpenCellFiveNeighbours_CellPointStateFiveNeighbours(int xCoordinate, int yCoordinate)
-            {
-                var fullFieldState = _processor.GetCurrentField();
-                _processor.Open(xCoordinate, yCoordinate);
-                fullFieldState = _processor.GetCurrentField();
+        [TestCase(1, 0)]
+        public void CheckPiontStateStatus_OpenCellFiveNeighbours_CellPointStateFiveNeighbours(int xCoordinate, int yCoordinate)
+        {
+            var fullFieldState = _processor.GetCurrentField();
+            _processor.Open(xCoordinate, yCoordinate);
+            fullFieldState = _processor.GetCurrentField();
 
-                Assert.AreEqual(PointState.Neighbors5, fullFieldState[xCoordinate, yCoordinate]);
-
-            }
+            Assert.AreEqual(PointState.Neighbors5, fullFieldState[xCoordinate, yCoordinate]);
         }
     }
+
+
+
 }
