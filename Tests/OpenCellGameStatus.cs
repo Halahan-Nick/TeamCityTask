@@ -23,7 +23,7 @@ namespace Tests
         }
 
 
-        [TestCase (1, 1)]
+        [TestCase(1, 1)]
         public void CheckLooseGameStatus_OpenCellWithMine_GameStatusIsLoose(int xCoordinate, int yCoordinate)
         {
             var gameState = _processor.Open(xCoordinate, yCoordinate);
@@ -59,9 +59,9 @@ namespace Tests
             var gameState = _processor.Open(xCoordinate, yCoordinate);
             gameState = _processor.Open(xCoordinate + 1, yCoordinate);
             gameState = _processor.Open(xCoordinate, yCoordinate + 1);
-           // gameState = _processor.Open(xCoordinate, yCoordinate);
+            // gameState = _processor.Open(xCoordinate, yCoordinate);
 
-            Assert.Throws<InvalidOperationException>(()=> _processor.Open(xCoordinate, yCoordinate));
+            Assert.Throws<InvalidOperationException>(() => _processor.Open(xCoordinate, yCoordinate));
 
         }
 
@@ -79,7 +79,7 @@ namespace Tests
         [SetUp]
         public void SetupForGameStatus()
         {
-            var testField = new bool[6, 6];
+            var testField = new bool[3, 10];
             testField[1, 1] = true;
             testField[1, 2] = true;
             testField[1, 3] = true;
@@ -90,7 +90,7 @@ namespace Tests
             testField[3, 2] = true;
             testField[3, 3] = true;
             _processor = new GameProcessor(testField);
-                       
+
         }
 
         [TestCase(0, 0)]
@@ -173,17 +173,27 @@ namespace Tests
         [SetUp]
         public void SetupForGameStatus()
         {
-            var testField = new bool[6, 6];
+            var testField = new bool[3, 10];
+            testField[0, 0] = true;
+            testField[1, 0] = true;
+            testField[2, 0] = true;
             testField[1, 1] = true;
+            testField[0, 2] = true;
             testField[1, 2] = true;
-            testField[1, 3] = true;
-            testField[1, 5] = true;
-            testField[2, 1] = true;
-            testField[2, 3] = true;
-            testField[3, 1] = true;
-            testField[3, 2] = true;
-            testField[3, 3] = true;
+            testField[2, 2] = true;
+
             _processor = new GameProcessor(testField);
 
+            [TestCase(0, 1)]
+            public void CheckPiontStateStatus_OpenCellFiveNeighbours_CellPointStateFiveNeighbours(int xCoordinate, int yCoordinate)
+            {
+                var fullFieldState = _processor.GetCurrentField();
+                _processor.Open(xCoordinate, yCoordinate);
+                fullFieldState = _processor.GetCurrentField();
+
+                Assert.AreEqual(PointState.Neighbors5, fullFieldState[xCoordinate, yCoordinate]);
+
+            }
         }
     }
+}
