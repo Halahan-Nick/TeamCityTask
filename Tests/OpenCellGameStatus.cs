@@ -24,7 +24,7 @@ namespace Tests
 
 
         [TestCase(1, 1)]
-        public void CheckLooseGameStatus_OpenCellWithMine_GameStatusIsLoose(int xCoordinate, int yCoordinate)
+        public void T1_CheckLooseGameStatus_OpenCellWithMine_GameStatusIsLoose(int xCoordinate, int yCoordinate)
         {
             var gameState = _processor.Open(xCoordinate, yCoordinate);
 
@@ -32,7 +32,7 @@ namespace Tests
         }
 
         [TestCase(0, 1)]
-        public void CheckActiveGameStatus_OpenCellWithNoMine_GameStatusIsActive(int xCoordinate, int yCoordinate)
+        public void T2_CheckActiveGameStatus_OpenCellWithNoMine_GameStatusIsActive(int xCoordinate, int yCoordinate)
         {
             var gameState = _processor.Open(xCoordinate, yCoordinate);
 
@@ -41,7 +41,7 @@ namespace Tests
 
 
         [TestCase(0, 0)]
-        public void CheckWinGameStatus_OpenAllCellsAllMines_GameStatusWin(int xCoordinate, int yCoordinate)
+        public void T3_CheckWinGameStatus_OpenAllCellsAllMines_GameStatusWin(int xCoordinate, int yCoordinate)
         {
 
             var gameState = _processor.Open(xCoordinate, yCoordinate);
@@ -54,7 +54,7 @@ namespace Tests
 
         [TestCase(0, 0)]
         //[Ignore("Need to find out how to work with thrown from method exception")]
-        public void CheckWinGameStatus_TryToOpenCell_InvalidOperationException(int xCoordinate, int yCoordinate)
+        public void T4_CheckWinGameStatus_TryToOpenCell_InvalidOperationException(int xCoordinate, int yCoordinate)
         {
             var gameState = _processor.Open(xCoordinate, yCoordinate);
             gameState = _processor.Open(xCoordinate + 1, yCoordinate);
@@ -94,7 +94,7 @@ namespace Tests
         }
 
         [TestCase(0, 0)]
-        public void CheckPiontStateStatus_CheckStatusOfClosedCell_FieldPointStateClose(int xCoordinate, int yCoordinate)
+        public void T5_CheckPiontStateStatus_CheckStatusOfClosedCell_FieldPointStateClose(int xCoordinate, int yCoordinate)
         {
             var fullFieldState = _processor.GetCurrentField();
 
@@ -103,7 +103,7 @@ namespace Tests
         }
 
         [TestCase(5, 5)]
-        public void CheckPiontStateStatus_OpenCellNoNeighbours_CellPointStateNoNeighbours(int xCoordinate, int yCoordinate)
+        public void T6_CheckPiontStateStatus_OpenCellNoNeighbours_CellPointStateNoNeighbours(int xCoordinate, int yCoordinate)
         {
 
             var fullFieldState = _processor.GetCurrentField();
@@ -115,7 +115,7 @@ namespace Tests
         }
 
         [TestCase(5, 0)]
-        public void CheckPiontStateStatus_OpenCellOneNeighbour_CellPointStateOneNeighbour(int xCoordinate, int yCoordinate)
+        public void T7_CheckPiontStateStatus_OpenCellOneNeighbour_CellPointStateOneNeighbour(int xCoordinate, int yCoordinate)
         {
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
@@ -126,7 +126,7 @@ namespace Tests
         }
 
         [TestCase(4, 2)]
-        public void CheckPiontStateStatus_OpenCellFourNeighbours_CellPointStateFourNeighbours(int xCoordinate, int yCoordinate)
+        public void T8_CheckPiontStateStatus_OpenCellFourNeighbours_CellPointStateFourNeighbours(int xCoordinate, int yCoordinate)
         {
 
             var fullFieldState = _processor.GetCurrentField();
@@ -138,7 +138,7 @@ namespace Tests
         }
 
         [TestCase(2, 2)]
-        public void CheckPiontStateStatus_OpenCellMaxNeighbours_CellPointStateEightNeighbours(int xCoordinate, int yCoordinate)
+        public void T9_CheckPiontStateStatus_OpenCellMaxNeighbours_CellPointStateEightNeighbours(int xCoordinate, int yCoordinate)
         {
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
@@ -149,7 +149,7 @@ namespace Tests
         }
 
         [TestCase(5, 1)]
-        public void CheckPiontStateStatus_OpenCellWithMine_CellPointStateMine(int xCoordinate, int yCoordinate)
+        public void T10_CheckPiontStateStatus_OpenCellWithMine_CellPointStateMine(int xCoordinate, int yCoordinate)
         {
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
@@ -186,7 +186,7 @@ namespace Tests
         }
 
         [TestCase(1, 0)]
-        public void CheckPiontStateStatus_OpenCellFiveNeighbours_CellPointStateFiveNeighbours(int xCoordinate, int yCoordinate)
+        public void T11_CheckPiontStateStatus_OpenCellFiveNeighbours_CellPointStateFiveNeighbours(int xCoordinate, int yCoordinate)
         {
             var fullFieldState = _processor.GetCurrentField();
             _processor.Open(xCoordinate, yCoordinate);
