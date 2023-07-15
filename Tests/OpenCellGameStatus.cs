@@ -22,6 +22,8 @@ namespace Tests
             _processor = new GameProcessor(testField);
         }
 
+        //Commented ROW for TeamCity Run check
+
 
         [TestCase(1, 1)]
         public void T1_CheckLooseGameStatus_OpenCellWithMine_GameStatusIsLoose(int xCoordinate, int yCoordinate)
