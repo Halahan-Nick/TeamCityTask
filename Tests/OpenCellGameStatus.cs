@@ -67,18 +67,18 @@ namespace Tests
 
         }
 
-        [Test]
-        public void Failed()
-        {
-            throw new Exception();
-        }
+        //[Test]
+        //public void Failed()
+        //{
+        //    throw new Exception();
+        //}
 
-        [Test]
-        public void Flaky1()
-        {
-            if (DateTime.Now.Millisecond % 2 == 0)
-            throw new Exception();
-        }
+        //[Test]
+        //public void Flaky1()
+        //{
+        //    if (DateTime.Now.Millisecond % 2 == 0)
+        //    throw new Exception();
+        //}
 
     }
 
