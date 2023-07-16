@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Minesweeper.Console\Minesweeper.Console.csproj" />
-    <ProjectReference Include="..\Minesweeper.Core\Minesweeper.Core.TeamCity.csproj" />
+    <ProjectReference Include="..\Minesweeper.Core\Minesweeper.Core.csproj" />
   </ItemGroup>
 
 </Project>
