@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Minesweeper.Core\Minesweeper.Core.csproj" />
+    <ProjectReference Include="..\Minesweeper.Core\Minesweeper.Core.TeamCity.csproj" />
   </ItemGroup>
 
 </Project>
